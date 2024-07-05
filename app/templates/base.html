@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+    {% include 'partials/head.html' %}
+	<body>
+
+        {% include 'partials/header.html' %}
+
+		{% include 'partials/sidebar.html' %}
+		<div class="mobile-menu-overlay"></div>
+
+		<div class="main-container">
+			<div class="xs-pd-20-10 pd-ltr-20">
+
+                {% block content %} {% endblock %}
+
+				<div class="footer-wrap pd-20 mb-20 card-box">
+					BookShop  By
+					<a href="#" target="_blank"
+						>Model Tech</a
+					>
+				</div>
+			</div>
+		</div>
+
+		{% include 'partials/scripts.html' %}
+
+	</body>
+</html>
