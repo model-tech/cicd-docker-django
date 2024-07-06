@@ -1,0 +1,25 @@
+name: django_app
+
+on: # specify the build to trigger the automated ci/cd
+    push:
+        branches:
+            - "main"
+
+jobs:
+    build:
+        name: Build Docker image
+        runs-on: ubuntu-latest # specify the build machine
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Log in to Docker Hub
+              uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+              with:
+                  username: ${{ secrets.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+            - name: Build the Docker image
+              run: docker build ./app/ --file ./app/Dockerfile.prod --tag ${{ secrets.DOCKERHUB_USERNAME }}/django-on-docker:latest
+
+            - name: Docker Push
+              run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/django-on-docker:latest

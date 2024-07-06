@@ -3,7 +3,7 @@ name: django_app
 on: # specify the build to trigger the automated ci/cd
     push:
         branches:
-            - "main"
+            - "develop"
 
 jobs:
     build:
@@ -19,7 +19,7 @@ jobs:
                   password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
             - name: Build the Docker image
-              run: docker build ./app/ --file ./app/Dockerfile.prod --tag ${{ secrets.DOCKERHUB_USERNAME }}/django-on-docker
+              run: docker build ./app/ --file ./app/Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/django-on-docker:dev
 
             - name: Docker Push
-              run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/django-on-docker
+              run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/django-on-docker:dev
