@@ -13,11 +13,11 @@ RUN apt-get update && apt-get install -y netcat
 
 # install dependencies
 RUN pip install --upgrade pip
-COPY app/requirements.txt .
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # copy entrypoint.sh
-COPY app/entrypoint.sh .
+COPY entrypoint.sh .
 RUN sed -i 's/\r$//g' /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
