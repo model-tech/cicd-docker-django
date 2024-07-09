@@ -11,8 +11,11 @@ then
     echo "PostgreSQL started"
 fi
 
+APP_PORT=${PORT:-8000}
+
 python manage.py flush --no-input
 python manage.py migrate
 python manage.py collectstatic --no-input --clear
+gunicorn book_shop.wsgi:application --bind "0.0.0.0:${APP_PORT}"
 
 exec "$@"
