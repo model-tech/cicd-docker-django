@@ -135,7 +135,7 @@ MEDIA_URL = 'media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:1337"]
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:30005"]
 
 LOGIN_REDIRECT_URL = '/'
 
